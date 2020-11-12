@@ -10,7 +10,7 @@ import UIKit
 public class MakeBindable<BindingType> {
     private var observers = [(BindingType) -> ()]()
     private var previousValue: BindingType?
-    init(_ value: BindingType? = nil) {
+    public init(_ value: BindingType? = nil) {
         previousValue = value
     }
     
