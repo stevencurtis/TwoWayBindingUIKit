@@ -23,7 +23,9 @@ public class MakeBindable<BindingType> {
     @objc func valueChanged( sender: UIControl) {
         if let keyPath = keyPath, let newValue = sender[keyPath: keyPath] as? BindingType {
             previousValue = newValue
-            observers.forEach{$0(newValue)}
+            DispatchQueue.main.async {
+                self.observers.forEach{$0(newValue)}
+            }
         }
     }
     
@@ -45,7 +47,9 @@ public class MakeBindable<BindingType> {
     public func update(with value: BindingType) {
         previousValue = value
         // call each of the functions
-        observers.forEach{ $0(value)}
+        DispatchQueue.main.async {
+            self.observers.forEach{ $0(value)}
+        }
     }
     
     public func bind<O: AnyObject, T>(
