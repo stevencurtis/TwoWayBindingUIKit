@@ -7,14 +7,14 @@
 
 import UIKit
 
-class MakeBindable<BindingType> {
+public class MakeBindable<BindingType> {
     private var observers = [(BindingType) -> ()]()
     private var previousValue: BindingType?
     init(_ value: BindingType? = nil) {
         previousValue = value
     }
     
-    func currentValue() -> BindingType? {
+    public func currentValue() -> BindingType? {
         return previousValue
     }
     
@@ -42,13 +42,13 @@ class MakeBindable<BindingType> {
         }
     }
     
-    func update(with value: BindingType) {
+    public func update(with value: BindingType) {
         previousValue = value
         // call each of the functions
         observers.forEach{ $0(value)}
     }
     
-    func bind<O: AnyObject, T>(
+    public func bind<O: AnyObject, T>(
         _ sourceKeyPath: KeyPath<BindingType, T>,
         to anyObject: O,
         _ objectKeyPath: ReferenceWritableKeyPath<O, T?>
@@ -64,7 +64,7 @@ class MakeBindable<BindingType> {
         }
     }
     
-    func bind<O: AnyObject, T>(
+    public func bind<O: AnyObject, T>(
         _ sourceKeyPath: KeyPath<BindingType, T>,
         to anyObject: O,
         _ objectKeyPath: ReferenceWritableKeyPath<O, T>
@@ -80,7 +80,7 @@ class MakeBindable<BindingType> {
         }
     }
       
-    func bind<O: AnyObject, T, R>(
+    public func bind<O: AnyObject, T, R>(
         _ sourceKeyPath: KeyPath<BindingType, T>,
         to anyObject: O,
         _ objectKeyPath: ReferenceWritableKeyPath<O, R?>,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Mappers {
+public enum Mappers {
     static var transformBoolToStringFunction: (Bool) -> String = String.init(_:)
     static var transformFloatToStringFunction: (Float) -> String = String.init(_:)
     static var transformIntToStringFunction: (Int) -> String = String.init(_:)
